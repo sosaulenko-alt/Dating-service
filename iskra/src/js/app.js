@@ -265,5 +265,82 @@ $("#form-chat").addEventListener("submit", async (e) => {
 });
 
 
+// ===============================
+// SESSION STORAGE
+// ===============================
+
+function saveSession(user) {
+  localStorage.setItem("iskra_user", JSON.stringify(user));
+}
+
+function loadSession() {
+  const saved = localStorage.getItem("iskra_user");
+
+  if (saved) {
+    currentUser = JSON.parse(saved);
+    renderHeaderNav();
+    enterApp();
+  }
+}
+
+function clearSession() {
+  localStorage.removeItem("iskra_user");
+}
+
+
+// переопределяем logout с очисткой
+const oldLogout = logout;
+
+logout = function () {
+  clearSession();
+  oldLogout();
+};
+
+
+// сохраняем пользователя после входа
+const oldEnterApp = enterApp;
+
+enterApp = async function () {
+  if (currentUser) {
+    saveSession(currentUser);
+  }
+
+  await oldEnterApp();
+};
+
+
+// проверка формы регистрации
+document.addEventListener("DOMContentLoaded", () => {
+
+  const register = $("#form-register");
+
+  if(register){
+    register.addEventListener("submit", () => {
+
+      const inputs = register.querySelectorAll("input");
+
+      let valid = true;
+
+      inputs.forEach(input => {
+
+        if(!input.value.trim()){
+          input.style.borderColor = "#FF6F5E";
+          valid = false;
+        }
+
+      });
+
+      if(!valid){
+        showToast("Заповніть всі поля ✦");
+      }
+
+    });
+  }
+
+
+  loadSession();
+
+});
+
 renderHeaderNav();
 showScreen("landing");
