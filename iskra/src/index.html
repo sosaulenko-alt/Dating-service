@@ -73,16 +73,32 @@
     <h2>Створити анкету</h2>
     <form id="form-register" novalidate>
       <label>Ім'я
-        <input type="text" name="name" required placeholder="Наприклад, Олена">
+        <input
+  type="text"
+  name="name"
+  required
+  placeholder="Наприклад, Олена"
+  autocomplete="name">
       </label>
       <label>Вік
         <input type="number" name="age" min="18" max="99" required placeholder="27">
       </label>
       <label>Email
-        <input type="email" name="email" required placeholder="you@example.com">
+        <input
+  type="email"
+  name="email"
+  required
+  placeholder="you@example.com"
+  autocomplete="email">
       </label>
       <label>Пароль
-        <input type="password" name="password" required minlength="4" placeholder="мінімум 4 символи">
+        <input
+  type="password"
+  name="password"
+  required
+  minlength="4"
+  placeholder="мінімум 4 символи"
+  autocomplete="new-password">
       </label>
       <label>Про себе (кілька слів)
         <input type="text" name="bio" required placeholder="Кава, походи, погані каламбури">
@@ -100,10 +116,20 @@
     <h2>Увійти</h2>
     <form id="form-login" novalidate>
       <label>Email
-        <input type="email" name="email" required placeholder="you@example.com">
+        <input
+  type="email"
+  name="email"
+  required
+  placeholder="you@example.com"
+  autocomplete="email">
       </label>
       <label>Пароль
-        <input type="password" name="password" required placeholder="••••••••">
+        <input
+  type="password"
+  name="password"
+  required
+  placeholder="••••••••"
+  autocomplete="current-password">
       </label>
       <p class="form-error" id="login-error"></p>
       <button type="submit" class="btn btn-primary btn-block">Увійти</button>
